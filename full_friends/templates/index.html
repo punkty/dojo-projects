@@ -21,7 +21,7 @@
       </form>
     <h1>FRIENDS:</h1>
     {% for friend in all_friends: %}
-    <form action="/friends/<id>/edit">
+    <form action="/friends/{{ friend['id'] }}/edit">
         <p>First Name: {{ friend['first_name'] }}</p>
         <p>Last Name: {{ friend['last_name'] }}</p>
         <p>Email: {{ friend['email'] }}</p>
