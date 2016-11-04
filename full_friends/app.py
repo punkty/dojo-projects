@@ -22,18 +22,6 @@ def create():
     mysql.query_db(query, data)
     return redirect('/')
 
-@app.route('/friends/<id>/edit', methods=['POST'])
-def edit(id):
-    # Will display the current unedited friend info
-    query = "friends = mysql.query_db('SELECT * FROM friends')"
-    data = {
-             'first_name': request.form['first_name'], 
-             'last_name':  request.form['last_name'],
-             'email': request.form['email']
-           }
-    mysql.query_db(query, data)
-    return render_template('edit.html')
-
 @app.route('/friends/<id>', methods=['POST'])
 def update(id):
     # proccesses the updated friend
@@ -45,6 +33,18 @@ def update(id):
            }
     mysql.query_db(query, data)
     return redirect('/')
+
+@app.route('/friends/<id>/edit')
+def edit(id):
+    # Will display the current unedited friend info
+    query = 'UPDATE friends SET first_name=request.form['first_name'],last_name=request.form['last_name'], email=request.form['email'] WHERE id= id;'
+    data = {
+             'first_name': request.form['first_name'], 
+             'last_name':  request.form['last_name'],
+             'email': request.form['email']
+           }
+    mysql.query_db(query, data)
+    return render_template('edit.html')
 
 @app.route('/friends/<id>/delete', methods=['POST'])
 def destroy(id):

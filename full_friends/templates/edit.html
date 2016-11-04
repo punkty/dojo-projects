@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Edit A Friend</title>
 </head>
 <body>
     <h1>Edit Yo Friend</h1>
-    
+    <form action='/friends'>
+    <label for="first_name">First Name:
+              <input type="text" name="first_name" id="first_name" value="{{friends['first_name']}}">
+          </label>
+    <label for="last_name">Last Name:
+              <input type="text" name="last_name" id="last_name" value="{{friends['last_name']}}">
+          </label>
+    <label for="email">Email:
+              <input type="text" name="email" id="email" value="{{friends['email']}}">
+          </label>
+    <input type="submit" value="Submit Changes">
+    </form>
 </body>
+
 </html>
