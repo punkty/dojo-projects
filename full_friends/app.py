@@ -6,9 +6,7 @@ app.secret_key = "ihopethisworks"
 
 @app.route('/')
 def index():
-    friends = mysql.query_db('SELECT * FROM friends')
-    print '------------------------------------------------'
-    print friends
+    friends = mysql.query_db('SELECT * FROM friends ORDER BY created_at DESC')
     return render_template('index.html', all_friends=friends)
 
 @app.route('/friends', methods=['POST'])
@@ -24,8 +22,6 @@ def create():
 
 @app.route('/friends/<id>', methods=['POST'])
 def update(id):
-    print 'LISTEN TO ME HAKJFHLSDKJHFLKSDJHFLKSJDHFLKSDJHFLKSDJHFLKDSJHLSKJDHFLDKSJHFLLSKDJHFLKJSDHFLKJH'
-    print id
     # proccesses the updated friend
     query = "UPDATE friends SET first_name=:first_name, last_name=:last_name, email=:email WHERE id=:id;"
     data = {
@@ -51,7 +47,6 @@ def destroy(id):
     query = "DELETE FROM friends WHERE id = :id"
     data = {'id': id}
     mysql.query_db(query, data)
-    print "cykacykacykacykacykacykacykacykacykacykacykacykacykacykacykacykacykacyka"
     return redirect('/')
 
 
